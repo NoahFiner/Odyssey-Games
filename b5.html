@@ -97,7 +97,7 @@
             var t2 = d.getTime();
             seconds = t2 - t1;
             $('#msgh').html("Good job?");
-            $('#msgp').html("Well, you cried 100mm of tears in "+seconds/100+" seconds and tried to give up a lot. Great work being heroic, I guess, by filling up a bucket of water to give to children in third world countries?");
+            $('#msgp').html("Well, you cried 100mm of tears in "+seconds/1000+" seconds and tried to give up a lot. Great work being heroic, I guess, by filling up a bucket of water to give to children in third world countries?");
             gamestarted = false;
             gamerunning = false;
             setTimeout(function() {end()}, 1000);
