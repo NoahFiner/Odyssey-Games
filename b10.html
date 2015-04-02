@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book 10</title>
+    <script type='text/javascript' src="res/jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="style10.css"/>
+</head>
+<body>
+    <div id="msg" class="back">
+        <h1 id="msgh" class="msgs">instructions</h1>
+        <p id="msgp" class="msgs">Press any key to move and make sure that no one insults how 'heroic' you are.</p>
+    </div>
+    <div id="background" class="back">
+        <img src="backgrounds/back10.png" id="backimg"/>
+    </div>
+    <div id="otherbacks" class="back">
+        <img src="book9/ocean.png" id="ocean"/>
+    </div>
+    <div id="oback" class="back">
+        <img id="o" class="omoving" src="book10/onormal.png"/>
+        <div id="textbox" class="omoving">
+            <p id="quote">u fkin wot m8<br><br>imma bash ur head in i swer un me mum</p>
+        </div>
+    </div>
+    <div id="shipback" class="back">
+        <img id="ship" class="moving" src="book10/boat1.png"/>
+    </div>
+    <script>
+        //TODO ADD TIME YOU LAZY FARTBAG
+/*
+ _.--""--._
+ ."          ".
+ | .   `      ` |
+ \(            )/
+ \)__.    _._(/
+ //   >..<   \\
+ |__.' vv '.__/
+ l'''"''l
+ \_    _/
+ _      )--(     _
+ | '--.__)--(_.--' |
+ \ |`----''----'| /
+ ||  `-'  '--' ||
+ || `--'  '--' ||
+ |l `--'--'--' |l
+ |__|`--'  `--'|__|
+ |  |    )-(   |  |
+ ||     )-(    \||
+ || __  )_(  __ \\
+ ||'  `-   -'  \ \\
+ ||\_   `-'   _/ |_\
+ /_\ _)J-._.-L(   /`-\
+ |`- I_)O /\ O( `--l\\\|
+ ||||( `-'  `-') .-' |||
+ \\\ \       / /   ///
+ \ \     / /
+ \ \   / /
+ /  \ /  \
+ |_()I()._|
+ \   /\   /
+ | /  \ |
+ | |   \ \
+ | |    \ \
+ | |     \ \
+ | |-nabis\ \_
+ | |      /-._\
+ |.-.\    //.-._)
+ \\\\   ///
+ \\\\-'''
+ 
+ OR ELSE SPOOKY SKELETON WILL GET YOU
+*/
+        var movement = "-";
+        var moveOcean = function(howmuchbro) {
+            $('#ocean').animate({marginLeft:""+howmuchbro+"=30px"}, 1000);
+            //$('.moving').animate({marginLeft:""+howmuchbro+"=5px"}, 1000);
+            if(howmuchbro === "-") {
+                movement = "+";
+            } if(howmuchbro === "+") {
+                movement = "-";
+            }
+        }
+    var oceanMovement = setInterval(function() {moveOcean(movement)}, 1000);
+            var Quote = function(did, tid) {
+                this.$div = $(did);
+                this.$q = $(tid);
+                this.change = function(quote) {
+                    this.$q.html(quote);
+                }
+                this.hide = function(time) {
+                    this.$div.fadeTo(time, 0);
+                }
+                this.show = function(time) {
+                    this.$div.fadeTo(time, 1);
+                }
+            }
+    var q = new Quote("#textbox", "#quote");
+    var c = new Quote("#ctextbox", "#cquote");
+    var gamestarted = false;
+    var gamerunning = false;
+    var ogetsrekt = function() {
+        $('#ship').attr("src", "book10/boat2.png");
+        setTimeout(function() {ogetspissed()}, 7000);
+    }
+    var ogetspissed = function() {
+        gamerunning = true;
+        $('#o').attr("src", "book10/opissed.png");
+        $('#ship').attr("src", "book10/boat3.png");
+        q.change("\"\'So he declared and I had half a mind<br><br>to draw the sharp sword from beside my hip<br><br>and slice his head off, tumbling down in the dust,<br><br>close kin that he was.\'\"<br><br>(X, 483-486)")
+        q.show(100);
+    }
+    var docrap = function() {
+        if(odist === 200) {
+            q.hide(100);
+        }
+        if(odist === 250) {
+            q.show(100);
+            q.change("\"\'But comrades checked me,<br><br>each man trying to calm me, left and right\'\"<br><br>(X, 485-486)");
+        }
+        if(odist === 400) {
+            q.hide(100);
+        }
+        if(odist === 500) {
+            q.show(100)
+            q.change("\"\'\"Captain, we'll leave him here if you command,<br><br>just where he is, to sit and guard the ship.\"\'\"<br><br>(X, 488-489)");
+        }
+        if(odist === 750) {
+            end();
+        }
+    }
+    var end = function() {
+        q.hide(100);
+        gamerunning = false;
+        $('#o').attr("src", "book10/onormal.png");
+        setTimeout(function() {
+                   q.change("\"\'With that,<br><br>up from the ship and shore they headed inland.<br><br>Nor did Eurylochus malinger by the hull;<br><br>he straggled behind the rest,<br><br>dreading the sharp blast of my rebuke.\'\"<br><br>(X, 490-495)");
+                   q.show(100);
+                   }, 500);
+        setTimeout(function() {
+                   $('#msgh').html("Good job?");
+                   $('#msgp').html("You didn't kill the guy that insulted you, so great work with that...<br>Click anywhere to go back to the hub.");
+                   $('#msg').fadeTo(1000, 1);
+                   $('#msg').attr("onclick", "location.href = 'hub.html'");
+        }, 10000);
+    }
+    var odist = 0;
+    $(document).ready(function() {
+                  $(document).keydown(function(key) {
+                                      if(gamerunning) {
+                                      $('.omoving').animate({marginLeft:"-=1px"},1);
+                                      odist += 1;
+                                      docrap();
+                                      
+                                      }
+                                      if(gamestarted != true) {
+                                          setTimeout(function() {ogetsrekt()}, 3000);
+                                          gamestarted = true;
+                                          $('#msg').fadeTo(1000, 0);
+                                      }
+                                          });
+    });
+    </script>
+</body>

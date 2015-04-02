@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odyssey Games</title>
+    <script type='text/javascript' src="res/jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="stylehub.css"/>
+</head>
+<body>
+    <div id="background" class="back">
+        <img src="backgrounds/back5.png" id="backimg5" class="backimg"/>
+        <img src="backgrounds/back9.png" id="backimg9" class="backimg"/>
+        <img src="backgrounds/back22.png" id="backimg22" class="backimg"/>
+        <img src="backgrounds/back10.png" id="backimg10" class="backimg"/>
+    </div>
+    <div id="otherbacks" class="back">
+        <img src="backgrounds/backhub.png" id="backchanging"/>
+    </div>
+    <div id="content" class="back">
+        <img id="title" src="hub/title.png"/>
+        <div id="middle">
+            <div id="middle-upper">
+                <div id="5" onclick="location.href = 'b5.html'" class="box">
+                    <p>&nbsp;Book 5</p>
+                    </div>
+                <div id="9" onclick="location.href = 'b9.html'" class="box">
+                    <p>&nbsp;Book 9</p>
+                    </div>
+            </div>
+            <div id="middle-lower">
+                <div id="10" onclick="location.href = 'b10.html'" class="box">
+                    <p>Book 10</p>
+                    </div>
+                <div id="22" onclick="location.href = 'b22.html'" class="box">
+                    <p>Book 22</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var kkeys = [], konami = "80,79,79,80,32,76,79,76,79,76";
+        
+        $(document).keydown(function(e) {
+                            
+                            kkeys.push( e.keyCode );
+                            
+                            if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+                            
+                            $(document).unbind('keydown',arguments.callee);
+                            
+                            alert('ha you typed poop');
+                            
+                            }
+                            
+                            });
+        var setSrc = function(which) {
+            $('.backimg').css('z-index', '-100');
+            $('#backimg'+which).css('z-index', '-99');
+        }
+    var fadeyFade = function(time, opacity) {
+        $('#otherbacks').fadeTo(time, opacity);
+    }
+    var yo = setTimeout(function() {fadeyFade(200, 1)}, 400);
+        $(document).ready(function() {
+                          var height = $('#middle').height();
+                          $('#middle').width(height);
+                          $('.box').hover(function() {
+                                          $('#otherbacks').fadeTo(100, 0.9);
+                                          clearTimeout(yo);
+                                          }, function() {
+                                          yo = setTimeout(function() {fadeyFade(200, 1)}, 400);
+                                          });
+                          $('#5').mouseenter(function() {
+                                             setSrc('5');
+                                             });
+                          $('#9').mouseenter(function() {
+                                             setSrc('9');
+                                             });
+                          $('#10').mouseenter(function() {
+                                              setSrc('10');
+                                              });
+                          $('#22').mouseenter(function() {
+                                              setSrc('22');
+                                              });
+            });
+        </script>
+</body>

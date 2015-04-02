@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book 10</title>
+    <script type='text/javascript' src="res/jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="style5.css"/>
+</head>
+<body>
+    <div id="msg" class="back">
+        <h1 id="msgh" class="msgs">instructions</h1>
+        <p id="msgp" class="msgs">Press any key to be 'heroic' by crying and trying to give up on your epic, 'heroic,' journey.</p>
+    </div>
+    <div id="background" class="back">
+        <img src="backgrounds/back5.png" id="backimg"/>
+    </div>
+    <div id="otherbacks" class="back">
+        <img src="book9/ocean.png" id="ocean"/>
+    </div>
+    <div id="oback" class="back">
+        <img id="o" class="moving" src="book5/onormal.png"/>
+        <div id="textbox" class="moving2x">
+            <p id="quote">u fkin wot m8<br><br>imma bash ur head in i swer un me mum</p>
+        </div>
+        <div id="sadmeter-outer-outer" class="moving2x">
+            <p id="sadmeter-pee">Amount of tears: 0mm</p><!--I'm so sorry for putting 'pee' in an id. I literally could not resist.-->
+            <div id="sadmeter-outer">
+                <div id="sadmeter-inner">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="shipback" class="back">
+        <img id="ship" class="moving" src="book5/boat1.png"/>
+    </div>
+    <script>
+        var normalize;
+        var movement = "-";
+        var moveOcean = function(howmuchbro) {
+            $('#ocean').animate({marginTop:""+howmuchbro+"=50px"}, 750);
+            $('.moving').animate({marginTop:""+howmuchbro+"=30px"}, 750);
+            $('.moving2x').animate({marginTop:""+howmuchbro+"=50px"}, 750);
+            if(howmuchbro === "-") {
+                movement = "+";
+            } if(howmuchbro === "+") {
+                movement = "-";
+            }
+        }
+    var oceanMovement = setInterval(function() {moveOcean(movement)}, 750);
+    var Quote = function(did, tid) {
+        this.$div = $(did);
+        this.$q = $(tid);
+        this.change = function(quote) {
+            this.$q.html(quote);
+        }
+        this.hide = function(time) {
+            this.$div.fadeTo(time, 0);
+        }
+        this.show = function(time) {
+            this.$div.fadeTo(time, 1);
+        }
+    }
+    normalize = setTimeout(function() {$('#o').attr("src", "book5/onormal.png")}, 250);
+    var q = new Quote("#textbox", "#quote");
+    var c = new Quote("#ctextbox", "#cquote");
+    var updateSadness = function() {
+        $('#o').attr("src", "book5/osad"+(Math.floor((sadlevel % 30)/6) + 1)+".png");
+        $('#sadmeter-inner').css("width", sadlevel/8+"%");
+        $('#sadmeter-pee').html("Amount of tears: "+Math.floor(sadlevel/8)+"mm");
+        if(sadlevel === 50) {
+            q.change("\"Odysseus' knees quaked and the heart inside him sank;<br><br>he spoke to his fighting spirit, desperate:<br><br>\'Worse and worse!\'\"<br><br>(V, 449-450)");
+            q.show(100);
+        }
+        if(sadlevel === 200) {
+            q.hide(100);
+        }
+        if(sadlevel === 250) {
+            q.change("\"The sea had beaten down his striving heart\"<br><br>(V, 502)");
+            q.show(100);
+        }
+        if(sadlevel === 400) {
+            q.hide(100);
+        }
+        if(sadlevel === 450) {
+            q.change("\"\'I throw myself on your mercy, on your current now-<br><br>I have suffered greatly. Pity me, lord,<br><br>your suppliant cries for help!\'\"(V, 495-497)");
+            q.show(100);
+        }
+        if(sadlevel === 600) {
+            q.hide(100);
+        }
+        if(sadlevel === 650) {
+            q.change("\"\'Man of misery, what next? Is this the end?<br><br>If I wait out a long tense night by the banks,<br><br>I fear the sharp frost and the soaking dew together<br><br>will do me in\'\"(V, 515-518)");
+            q.show(100);
+        }
+        if(sadlevel === 800) {
+            q.hide(100);
+            d = new Date();
+            var t2 = d.getTime();
+            seconds = t2 - t1;
+            $('#msgh').html("Good job?");
+            $('#msgp').html("Well, you cried 100mm of tears in "+seconds/100+" seconds and tried to give up a lot. Great work being heroic, I guess, by filling up a bucket of water to give to children in third world countries?");
+            gamestarted = false;
+            gamerunning = false;
+            setTimeout(function() {end()}, 1000);
+        }
+    }
+    var d = new Date();
+    var t1 = d.getTime();
+    var end = function() {
+        gamestarted = false;
+        gamerunning = false;
+        $('#msg').fadeTo(1000, 1);
+        $('#msg').attr("onclick", "location.href = 'hub.html'");
+    }
+    var sadlevel = 0;
+    var gamestarted = false;
+    var gamerunning = true;
+        $(document).ready(function() {
+                          $(document).keypress(function(key) {
+                                               if(gamestarted === false) {
+                                                    gamestarted = true;
+                                                    $('#msg').fadeTo(1000, 0);          }
+                                               if(gamestarted && gamerunning) {
+                                               clearTimeout(normalize);
+                                               sadlevel += 1;
+                                               updateSadness();
+                                               normalize = setTimeout(function() {$('#o').attr("src", "book5/onormal.png")}, 1000);
+                                               };
+                                               });
+    });
+    </script>
+</body>

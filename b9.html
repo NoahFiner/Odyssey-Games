@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book 9</title>
+    <script type='text/javascript' src="res/jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="style9.css"/>
+</head>
+<body>
+    <div id="msg" class="back">
+        <h1 id="msgh" class="msgs">instructions</h1>
+        <p id="msgp" class="msgs">Press any key to make your crewmates sail your ship away from the Cyclops's island before you use your 'heroism' to make the Cyclops too mad.
+    </div>
+    <div id="background" class="back">
+        <img src="backgrounds/back9.png" id="backimg"/>
+    </div>
+    <div id="otherbacks" class="back">
+        <img src="book9/ocean.png" id="ocean"/>
+    </div>
+    <div id="godback" class="back">
+        <img id="god" src="book9/god.png"/>
+    </div>
+    <div id="shipback" class="back">
+        <img id="ship" src="book9/crew.png"/>
+        <div id="textbox">
+            <p id="quote">'ur stupid lol'</p>
+        </div>
+    </div>
+    <div id="cyclops" class="back">
+        <img id="cyc" src="book9/cyclops.png"/>
+        <div id="angrymeter-outer-outer">
+            <p id="angrymeter-top">Angry Meter: upset</p>
+            <div id="angrymeter-outer">
+                <div id="angrymeter-inner">
+                </div>
+            </div>
+        </div>
+        <div id="rockdiv">
+            <img id="rock" src="book9/rock.png"/>
+        </div>
+        <div id="ctextbox">
+            <p id="cquote">hi</p>
+        </div>
+    </div>
+    <div id="sadodiv" class="back">
+        <img id="sado" src="book9/sad.png"/>
+    </div>
+    <script>
+        var movement = "-";
+        var boatdist = 0;
+        var moveOcean = function(howmuchbro) {
+            $('#ocean').animate({marginLeft:""+howmuchbro+"=30px"}, 1000);
+            if(howmuchbro === "-") {
+                movement = "+";
+            } if(howmuchbro === "+") {
+                movement = "-";
+            }
+        }
+    var oceanMovement = setInterval(function() {moveOcean(movement)}, 1000);
+    var end = function() {
+        gamerunning = false;
+        $('#msg').fadeTo(1000, 1);
+        $('#msgh').html("Good job?");
+        $('#msgp').html("You won! Your 'heroism' may have destroyed the crew and everything else, but... uh... you didn't die so that's good");
+        $('#msg').attr("onclick", "location.href = 'hub.html'");
+    }
+    var moveBoat = function() {
+        boatdist += 2;
+        $('#ship').animate({marginLeft:"-=0.5px"},10);
+        $('#textbox').animate({marginLeft:"-=0.5px"},10);
+        if(boatdist === 100) {
+            q.change("\"\'They threw themselves in the labor, rowed on fast<br><br>but once we\'d plowed the breakers twice as far,<br><br>again I began to taunt the Cyclops--men around me<br><br>trying to check me, calm me, left and right:<br><br>\"So headstrong--why? Why rile the beast again?\"\'\"<br><br>(IX, 546-550)");
+            q.show(100);
+            setAngriness("angry", 30);
+            setTimeout(function() {throwRock(500, -400)}, 1000);
+            setTimeout(function() {animateShip(400, 0.25)}, 1400);
+        }
+        if(boatdist === 200) {
+            q.hide(100);
+        }
+        if(boatdist === 224) {
+            createRock();
+            q.change("\"\'I called back to the cyclops, stinging taunts\'\" (IX, 530)");
+            q.show(100);
+            setAngriness("angry", 35);
+            setTimeout(function() {throwRock(600, -400)}, 1000);
+            setTimeout(function() {animateShip(450, 0.45)}, 1450);
+        }
+        if(boatdist === 350) {
+            q.hide(100);
+        }
+        if(boatdist === 400) {
+            createRock();
+            q.change("\"\'So they begged<br><br>but they could not bring my fighting spirit round.<br><br>I called back with another burst of anger, \"Cyclops--<br><br>if any man on the face of the earth should ask you<br><br>who blinded you, shamed you so--say Odysseus,<br><br>raider of cities, he gouged out your eye,\"\'\"<br><br> (IX, 556-560)");
+            q.show(100);
+            setAngriness("VERY ANGRY", 75);
+            setTimeout(function() {throwRock(600, -400)}, 1000);
+            setTimeout(function() {animateShip(450, 0.45);createRock();}, 1450);
+            setTimeout(function() {throwRock(800, -400)}, 2000);
+            setTimeout(function() {animateShip(350, 0.6)}, 2450);
+        }
+        if(boatdist === 500) {
+            q.hide(100);
+        }
+        if(boatdist === 650) {
+            createRock();
+            q.change("\"Heal you!\"-<br><br>here was my parting shot-\"Would to god I could strip you<br><br>of life and breath and ship you down to the House of Death<br><br>as surely as no one will ever heal your eye,<br><br>not even your earthquake god himself!\"\'<br><br>(IX, 579-583)")
+            q.show(100);
+            setAngriness("<b>RAGING</b>", 100);
+            setTimeout(function() {throwRock(900, -400)}, 1000);
+            setTimeout(function() {animateShip(500, 1)}, 1450);
+            setTimeout(function() {animateShip(1000, 10)}, 2000);
+            setTimeout(function() {sinkShip(500, 200);$('#ship').attr('src', 'book9/brokencrew.png')}, 2000);
+            setTimeout(function() {sinkShip(500, -200)}, 3000);
+        }
+        if(boatdist === 700) {
+            q.hide(100);
+        }
+        if(boatdist === 800) {
+            c.change("\"\'\"Hear me-<br><br>Poseidon, god of the sea-blue mane who rocks the earth!<br><br>If I really am your son and you claim to be my father-<br><br>come, grant that Odysseus, raider of cities,<br><br>Laertes\' son who makes his home in Ithaca,<br><br>never reaches home.<br><br>(IX, 585-590)");
+            $('#cyc').attr("src", "book9/cyclops-pray.png");
+            c.show(100);
+        }
+        if(boatdist === 900) {
+            c.hide(100);
+        }
+        if(boatdist === 950) {
+            clearInterval(oceanMovement);
+            toggleStorm = setInterval(function() {storm(poopypoop); if(poopypoop === 'u') {poopypoop = 'd'} else {poopypoop = 'u'}}, 400)
+            $('#god').animate({marginTop:"10%"}, 500);
+            setTimeout(function() {animateShip(1000, 4);sinkShip(750, 200);}, 1000);
+            setTimeout(function() {$('#sado').animate({marginTop:"24%"},1000)},3000);
+            setTimeout(function() {end();}, 4000);
+        }
+    }
+    poopypoop = 'd';
+    var storm = function(d) {
+        if(d === 'u') {
+            $('#ocean').animate({bottom:"+=50px"}, 300);
+        };
+        if(d === 'd') {
+            $('#ocean').animate({bottom:"-=50px"}, 300);
+        };
+    }
+    var createRock = function() {
+        $('#cyclops').append("<div id='rockdiv'><img id='rock' src='book9/rock.png'/></div>");
+    }
+    var sinkShip = function(time, amt) {
+        $('#ship').animate({marginTop:"+="+amt+"px"},time);
+    }
+    var animateShip = function(time, intensity) {
+        var rotation = 0;
+        var direct= 1;
+        var setDirect = function() {
+            direct = 0;
+        }
+        var rotate = function(howmuch, direct) {
+            $('#ship').css("-webkit-transform", "rotate("+rotation+"deg)");
+            if(direct === 1) {
+                rotation += intensity;
+            }
+            if(direct === 0) {
+                rotation -= intensity;
+            }
+        }
+        var rotating = setInterval(function() {rotate(rotation, direct)}, 2);
+        setTimeout(function() {setDirect()}, time/2);
+        setTimeout(function() {clearInterval(rotating);}, time);
+    }
+    var throwRock = function(x, y) {
+        var rotation = 0;
+        var rotate = function(howmuch) {
+            $('#rock').css("-webkit-transform","rotate("+rotation+"deg)");
+            rotation += 5;
+        }
+        rotating = setInterval(function() {rotate(rotation)}, 2);
+        $('#rockdiv').animate({marginTop:"-="+y+"px",marginLeft:"-="+x+"px"},500);
+        setTimeout(function() {$('#rockdiv').remove();clearInterval(rotating)}, 500);
+    }
+    var setAngriness = function(description, level) {
+        $('#angrymeter-inner').animate({width:level+"%"}, 500);
+        $('#angrymeter-top').html("Angry Meter: "+description);
+    }
+    var Quote = function(did, tid) {
+        this.$div = $(did);
+        this.$q = $(tid);
+        this.change = function(quote) {
+            this.$q.html(quote);
+        }
+        this.hide = function(time) {
+            this.$div.fadeTo(time, 0);
+        }
+        this.show = function(time) {
+            this.$div.fadeTo(time, 1);
+        }
+    }
+    var q = new Quote("#textbox", "#quote");
+    var c = new Quote("#ctextbox", "#cquote");
+    var gamestarted = false;
+    var gamerunning = true;
+    $(document).ready(function() {
+                      $(document).keydown(function(key) {
+                                          if(gamerunning) {
+                                              moveBoat();
+                                              if(gamestarted != true) {
+                                              gamestarted = true;
+                                              $('#msg').fadeTo(1000, 0);
+                                          }};
+                                          });
+    });
+    </script>
+</body>

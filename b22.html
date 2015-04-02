@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book 22</title>
+    <script type='text/javascript' src="res/jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="style22.css"/>
+</head>
+<body>
+    <div id="msg" class="back">
+        <h1 id="msgh" class="msgs">instructions</h1>
+        <p id="msgp" class="msgs">Uh oh! Everyone in your house wants to brutally murder you. Therefore, you are now going to brutally murder everyone! Click on an enemy to kill them! Press any key to continue!</p>
+    </div>
+    <div id="background" class="back">
+        <img src="backgrounds/back22.png" id="backimg"/>
+    </div>
+    <!--<div id="otherbacks" class="back">
+        <img src="book9/ocean.png" id="ocean"/>
+    </div>
+    <div id="godback" class="back">
+        <img id="god" src="book9/god.png"/>
+    </div>
+     -->
+    <div id="ediv" class="back">
+    </div>
+    <div id="oback" class="back">
+        <p id="timer">00:59</p>
+        <img id="ody" src="book22/madody.png"/>
+        <div id="textbox">
+            <p id="quote">'ur stupid lol'</p>
+        </div>
+        <p id="violent">I'm not going to show this, ok?</p>
+    </div>
+    <script>
+        var blood = ''; //'rblood' is reduced blood. To turn on gore, make sure this value is ''
+        var timeLeft = 59;
+        var toggleAudio = true;
+        var Enemy = function(src, num, vel) {
+            this.create = function() {
+                $('#ediv').append("<img src="+src+" id='e"+num+"' class='e'/>");
+                $('#e'+num).animate({marginLeft:"-="+vel+"px"}, 3000);
+            }
+        }
+    e = [];
+    elen = 0; //Ellen's cameo!
+    var addEnemy = function(que) {
+        e[que] = new Enemy("book22/enemy"+(Math.floor(Math.random()*3)+1)+".png",   que, 1000+(Math.floor(Math.random()*200 - 100)));
+        e[que].create();
+    };
+    var enemycrap = function() {
+        timeLeft -= 1;
+        $('#timer').html("00:"+timeLeft);
+        if(timeLeft < 10) {
+            $('#timer').html("00:0"+timeLeft);
+        }
+        //actual events lel
+        if(timeLeft === 55) {
+            q.change("\"he flung himself at Odysseus, clutched his knees,<br><br>crying out to the king with a sudden, winging prayer:<br><br>\'I hug your knees, Odysseus-mercy! spare my life!<br><br>Never, I swear, did I harass any woman in your house-<br><br>never a word, a gesture-nothing,\' [...] <br><br> Odysseus hacked the prophet square across the neck<br><br>and the praying head went tumbling in the dust.<br><br>(XXII, 327-329, 344-345)");
+            q.show(100);
+        }
+        if(timeLeft === 53) {
+            e[6969] = new Enemy("book22/prayer.png", 6969, 1200);
+            e[6969].create();
+        }
+        if(timeLeft === 47) {
+            q.hide(100);
+        };
+        if(timeLeft === 40) {
+            q.change("\"Odysseus scanned his house to see if any man<br><br>still skulked alive, still hoped to avoid black death.<br><br>But he found them one and all in blood and dust...<br><br>great hauls of them down and out like fish that fishermen<br><br>drag from the churning gray surf in looped and coiling nets<br><br>and fling ashore on a sweeping hook of beach-some noble catch<br><br>heaped on the sand, twitching, lusting for fresh salt sea<br><br>but the Sungod hammers down and burns their lives out...<br><br>so the suitors lay in heaps, corpse covering corpse.<br><br>(XXII, 406-417)");
+            q.show(100);
+        }
+        if(timeLeft === 30) {
+            q.hide(100);
+        }
+        if(timeLeft === 20) {
+            q.change("\"\'march the women out of the great hall-between<br><br>the roundhouse and the courtyard's strong stockade-<br><br>and hack them with your swords, slash out all their lives-<br><br>blot out of their minds the joys of love they relished<br><br>under the suitors' bodies, rutting on the sly!\'\"<br><br>(XXII, 466-470)")
+            q.show(100);
+        }
+        if(timeLeft === 12) {
+            q.hide(100);
+        }
+        if(timeLeft === 10) {
+            q.change("\"Melanthius?<br><br>They hauled him out through the doorway, into the court,<br><br>lopped his nose and ears with a ruthless knife,<br><br>tore his genitals out for the dogs to eat raw<br><br>and in manic fury hacked off hands and feet.<br><br>(XXII, 500-504)");
+            q.show(100);
+            $('#violent').fadeTo(2000, 1);
+        }
+        if(timeLeft === 2) {
+            q.hide(100);
+            $('#violent').fadeOut(500);
+        }
+        if(timeLeft === 0) {
+            $('#msgh').html("Good job?");
+            $('#msgp').html("You successfully murdered "+murdered+" people, ruining around "+Math.floor(murdered*0.8)+" families in just one minute! Well, you saved your house, so that's good, but, uh, maybe you shouldn't have brutally murdered everyone...<br>Click anywhere to continue.");
+            $('#msg').fadeTo(1000, 1);
+            setTimeout(function() {$('#msg').attr("onclick", "location.href = 'hub.html'");}, 2000);
+        }
+        for(i = 0; i < Math.floor(Math.random()*3); i++) {
+            elen += 1;
+            addEnemy(elen);
+        };
+    };
+    var Quote = function(did, tid) {
+        this.$div = $(did);
+        this.$q = $(tid);
+        this.change = function(quote) {
+            this.$q.html(quote);
+        }
+        this.hide = function(time) {
+            this.$div.fadeTo(time, 0);
+        }
+        this.show = function(time) {
+            this.$div.fadeTo(time, 1);
+        }
+    }
+    var Arrow = function() {
+        this.create = function() {
+            $('#ediv').append("<img src='book22/arrow.png' class='arrow'/>");
+        }
+        this.fire = function(dist) {
+            $('.arrow').animate({marginLeft:"+="+dist+"px"}, 250);
+            setTimeout(function() {$('.arrow').remove()}, 250);
+        }
+    }
+    var murdered = 0;
+    var q = new Quote("#textbox", "#quote");
+    var c = new Quote("#ctextbox", "#cquote");
+    var gamestarted = false;
+    var gamerunning = false;
+    var javascripthateslife = function(wtf) {
+        alert(wtf);
+        $(wtf).attr("src", "book22/enemy"+(Math.floor(Math.random()*3)+1)+"d"+blood+".png");
+        $(wtf).addClass('deade');
+    }
+    var init = function() {
+        spawnEnemies = setInterval(function() {enemycrap()}, 1000);
+        endTimeout = setTimeout(function() {clearInterval(spawnEnemies)}, 59000);
+        enemycrap();
+    };
+    var end = function() {
+        q.change("");
+    }
+    $(document).on('click', '.e', function() {
+                   murdered += 1;
+                   $(this).stop();
+                   $(this).css("pointer-events", "none");
+                   //$(this).css("outline", "2px solid red")
+                   a = new Arrow();
+                   a.create();
+                   a.fire(($(this).offset()).left);
+                   var that = this;
+                   var hi = setTimeout(function() {$(that).attr("src", "book22/enemy"+(Math.floor(Math.random()*3)+1)+"d"+blood+".png");$(that).addClass('deade');}, 250);
+                   if(toggleAudio) {
+                    $('body').append("<audio src='book22/death"+(Math.floor(Math.random()*6+1))+".mp3' type='audio/mpeg' autoplay></audio>")
+                   };
+                   });
+    $(document).ready(function() {
+                      $(document).keypress(function() {
+                                           if(gamerunning === false) {
+                                                gamerunning = true;
+                                                $('#msg').fadeTo(500, 0);
+                                           init();
+                                           }
+                                });
+                      });
+    </script>
+</body>

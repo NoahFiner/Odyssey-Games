@@ -1,0 +1,184 @@
+
+* {
+    font-family:helvetica;sans-serif;
+    color:white;
+    position:absolute;
+}
+
+.msgs {
+    font-family:helvetica;sans-serif;
+    font-weight:lighter;
+    color:white;
+    position:relative;
+    text-align:center;
+    margin: 0, 0, 0, 0;
+}
+
+#msg h1 {
+    font-size:200px;
+}
+
+#msg p {
+    font-size:50px;
+}
+
+#background, #otherbacks {
+    position:fixed;
+    width:100%;
+    height:100%;
+    margin: 0, 0, 0, 0;
+    
+}
+
+#msg {
+    z-index:1000000000000000;
+    background-color:rgba(0, 0, 0, 0.8);
+    text-align:center;
+    padding:25%, 10%, 25%, 10%;
+}
+
+#otherbacks {
+    z-index:1000;
+}
+
+.back {
+    position:fixed;
+    width:100%;
+    height:100%;
+    margin: 0, 0, 0, 0;
+}
+
+#backimg {
+    width:100%;
+    height:100%;
+    z-index:-10000;
+    margin: 0, 0, 0, 0;
+}
+
+#o {
+    width:11%;
+    margin-top:19%;
+    margin-left:72%;
+}
+
+#ocean {
+    width:150%;
+    margin-top:45%;
+    z-index:1000
+}
+
+#ship {
+    width:90%;
+    margin-top:2%;
+    margin-left:2%;
+    z-index:100;
+}
+
+#shipback {
+    z-index:10;
+}
+
+#textbox p {
+    position:block;
+}
+
+#textbox {
+    opacity:0;
+    margin-top:5%;
+    margin-left:80%;
+    background-color:white;
+    border-radius:5px;
+    width:200px;
+    height:150px;
+    z-index:1000000000000;
+    padding: 5px 5px 5px 5px;
+    border:1px solid black;
+}
+
+#ctextbox {
+    opacity:0;
+    margin-top:10%;
+    margin-left:50%;
+    background-color:white;
+    outline:1px solid black;
+    border-radius:5px;
+    width:200px;
+    height:150px;
+    z-index:10000000;
+    padding: 5px 5px 5px 5px;
+}
+
+#cquote {
+    font-family:serif;
+    color:black;
+    font-size:8px;
+}
+
+#cyc {
+    width:30%;
+    margin-top:15%;
+    margin-left:60%;
+    z-index:10000000;
+}
+
+#angrymeter-outer-outer {
+    width:30%;
+    margin-top:10%;
+    margin-left:60%;
+    text-align:center;
+    color:red;
+}
+
+#angrymeter-outer-outer p {
+    color:red;
+    text-align:center;
+    margin-left:21%;
+}
+
+#angrymeter-outer {
+    width:80%;
+    height:5px;
+    outline:1px solid red;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:transparent;
+}
+#angrymeter-inner {
+    width:10%;
+    float:left;
+    height:100%;
+    background-color:red;
+    
+}
+
+#quote {
+    font-family:serif;
+    color:black;
+    font-size:8px;
+}
+
+#rockdiv {
+    position:absolute;
+    width:9%;
+    height:16%;
+    margin-top:17%;
+    margin-left:67%;
+    z-index:100000;
+}
+#rock {
+    height:100%;
+    width:100%;
+}
+
+#god {
+    margin-left:12%;
+    margin-top:50%;
+    z-index:999;
+}
+
+#sado {
+    margin-left:50%;
+    margin-top:50%;
+    z-index:100000;
+    height:50%;
+}

@@ -1,0 +1,222 @@
+
+* {
+    font-family:helvetica;sans-serif;
+    color:white;
+    position:absolute;
+}
+
+.msgs {
+    font-family:helvetica;sans-serif;
+    font-weight:lighter;
+    color:white;
+    position:relative;
+    text-align:center;
+    margin: 0, 0, 0, 0;
+}
+
+#timer {
+    font-size:25px;
+    margin-left:50%;
+}
+
+#msg h1 {
+    font-size:200px;
+}
+
+#msg p {
+    font-size:50px;
+}
+
+#background, #otherbacks {
+    position:fixed;
+    width:100%;
+    height:100%;
+    margin: 0, 0, 0, 0;
+    pointer-events:none;
+    
+}
+
+#msg {
+    z-index:1000000000000000;
+    background-color:rgba(0, 0, 0, 0.8);
+    text-align:center;
+    padding:25%, 10%, 25%, 10%;
+    pointer-events:none;
+}
+
+#otherbacks {
+    z-index:1000;
+}
+
+#oback {
+    pointer-events:none;
+}
+
+.back {
+    position:fixed;
+    width:100%;
+    height:100%;
+    margin: 0, 0, 0, 0;
+}
+
+#backimg {
+    width:100%;
+    height:100%;
+    z-index:-10000;
+    margin: 0, 0, 0, 0;
+}
+
+#ocean {
+    width:150%;
+    margin-top:45%;
+    z-index:1000
+}
+
+#ody {
+    width:10%;
+    margin-top:35%;
+    z-index:100;
+}
+
+.e {
+    width:10%;
+    margin-top:35%;
+    z-index:10000;
+    margin-left:100%;
+}
+
+.deade {
+    width:15%;
+    margin-top:44%;
+    z-index:10000;
+    margin-left:100%;
+}
+
+#textbox {
+    opacity:0;
+    margin-top:24%;
+    margin-left:10%;
+    background-color:white;
+    border-radius:5px;
+    width:200px;
+    height:175px;
+    z-index:1000;
+    padding: 5px 5px 5px 5px;
+}
+
+#ctextbox {
+    opacity:0;
+    margin-top:10%;
+    margin-left:50%;
+    background-color:white;
+    outline:1px solid black;
+    border-radius:5px;
+    width:200px;
+    height:150px;
+    z-index:10000000;
+    padding: 5px 5px 5px 5px;
+}
+
+#violent {
+    margin-top:10%;
+    margin-left:60%;
+    font-size:50px;
+    opacity:0;
+    font-weight:bolder;
+    pointer-events:none;
+}
+
+#cquote {
+    font-family:serif;
+    color:black;
+    font-size:8px;
+}
+
+#cyc {
+    width:30%;
+    margin-top:15%;
+    margin-left:60%;
+    z-index:10000000;
+}
+
+#angrymeter-outer-outer {
+    width:30%;
+    margin-top:10%;
+    margin-left:60%;
+    text-align:center;
+    color:red;
+}
+
+#angrymeter-outer-outer p {
+    color:red;
+    text-align:center;
+    margin-left:21%;
+}
+
+#angrymeter-outer {
+    width:80%;
+    height:5px;
+    outline:1px solid red;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:transparent;
+}
+#angrymeter-inner {
+    width:10%;
+    float:left;
+    height:100%;
+    background-color:red;
+    
+}
+
+#quote {
+    font-family:serif;
+    color:black;
+    font-size:8px;
+}
+
+#rockdiv {
+    position:absolute;
+    width:9%;
+    height:16%;
+    margin-top:17%;
+    margin-left:67%;
+    z-index:100000;
+}
+#rock {
+    height:100%;
+    width:100%;
+}
+
+#god {
+    margin-left:12%;
+    margin-top:50%;
+    z-index:999;
+}
+
+#sado {
+    margin-left:50%;
+    margin-top:50%;
+    z-index:100000;
+    height:50%;
+}
+
+.arrow {
+    margin-top:37%;
+    width:2.5%;
+    
+}
+
+/*Thanks stackoverflow!*/
+
+::-moz-selection{
+    background-color:Transparent;
+    color:#000;
+}
+
+::selection {
+    background-color:Transparent;
+    color:#000;
+}
+.myclass::-moz-selection,
+.myclass::selection { ... }
