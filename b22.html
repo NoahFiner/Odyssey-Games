@@ -131,7 +131,7 @@
         $(wtf).addClass('deade');
     }
     var init = function() {
-        spawnEnemies = setInterval(function() {enemycrap()}, 1000);
+        spawnEnemies = setInterval(function() {enemycrap()}, 900);
         endTimeout = setTimeout(function() {clearInterval(spawnEnemies)}, 59000);
         enemycrap();
     };
